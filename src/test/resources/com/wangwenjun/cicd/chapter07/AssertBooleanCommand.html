@@ -1,0 +1,17 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="concordion.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<h1>AssertTrue and AssertFalse指令示例</h1>
+<div class="example">
+    <p>工具 名称 :<span concordion:set="#concordion">Concordion</span></p>
+    <p>Concordion <span concordion:assertTrue="#concordion.startsWith(#letter)">以
+        <b concordion:set="#letter">C</b></span>开头.</p>
+    <p>并且<span concordion:assertFalse="#concordion.endsWith(#letter)">
+        不以 <b concordion:set="#letter">X</b></span>结尾.
+    </p>
+</div>
+</body>
+</html>

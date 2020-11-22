@@ -1,0 +1,60 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="concordion.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<h1>返回简单类型:(int,String,array,POJO)</h1>
+<div class="example">
+    <p concordion:execute="#i=getInt()">从Fixture中获取int类型的值</p>
+    <p>
+        <!--注释①-->
+        i的值为:<span concordion:assertEquals="#i">10</span>
+    </p>
+    <p>
+        <!--注释②-->
+        i的二进制字符串为:<span concordion:assertEquals="@java.lang.Integer@toBinaryString(#i)">1010</span>
+    </p>
+    <hr/>
+    <p concordion:execute="#s=getString()">从Fixture中获取String类型的值</p>
+    <p>
+        <!--注释③-->
+        s的值以<span concordion:assertTrue="#s.startsWith(#h)"><b concordion:set="#h">H</b> </span>开头
+    </p>
+    <p>
+        <!--注释④-->
+        s的值转换为大写后:<span concordion:assertEquals="#s.toUpperCase()">HELLO</span>
+    </p>
+    <p>
+        <!--注释⑤-->
+        s的值长度为:<span concordion:assertEquals="#s.length()">5</span>
+    </p>
+    <hr/>
+    <p concordion:execute="#a=getArray()">从Fixture中获取数组类型的值</p>
+    <p>
+        <!--注释⑥-->
+        a的长度为:<span concordion:assertEquals="#a.length">2</span>
+    </p>
+    <!--注释⑦-->
+    <p>
+        a[0]的值为:<span concordion:assertEquals="#a[0]">Hello</span>
+    </p>
+    <p>
+        a[1]的值为:<span concordion:assertEquals="#a[1]">World</span>
+    </p>
+    <hr/>
+    <p concordion:execute="#o=getPOJO()">从Fixture中获取最基本POJO对象的值</p>
+    <p>
+        o.name的值为:<span concordion:assertEquals="#o.name">Alex</span>
+    </p>
+    <p>
+        <!--注释⑧-->
+        o.name转换为大写:<span concordion:assertEquals="#o.name.toUpperCase()">ALEX</span>
+    </p>
+    <p>
+        <!--注释⑨-->
+        o.name.equalsIgnoreCase：<span concordion:assertTrue="#o.name.equalsIgnoreCase(#TEXT)"><b concordion:set="#TEXT">alex</b></span>
+    </p>
+</div>
+</body>
+</html>

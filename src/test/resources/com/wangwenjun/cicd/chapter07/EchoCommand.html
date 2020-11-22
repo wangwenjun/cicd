@@ -1,0 +1,15 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="concordion.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<h1>Echo指令</h1>
+<div concordion:example="Echo测试用例">
+    在specification中定义变量:<span concordion:set="#x">10</span>,输出变量:<span concordion:echo="#x"/>,
+    <br/>
+    调用Fixture获取变量:<span concordion:set="#x=getValue()"></span>,输出变量:<span concordion:echo="#x"/>
+</div>
+</body>
+</html>

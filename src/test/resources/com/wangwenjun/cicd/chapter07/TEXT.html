@@ -1,0 +1,15 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="concordion.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<h1>#TEXT内置默认变量</h1>
+<div class="example">
+    调用greeting方法，参数为:<span concordion:execute="#result=greeting(#TEXT)">World</span>
+    <p/>
+    验证结果:<span concordion:assertEquals="#result">Hello World</span>
+</div>
+</body>
+</html>

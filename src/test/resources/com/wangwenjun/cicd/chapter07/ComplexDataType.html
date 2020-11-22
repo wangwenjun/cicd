@@ -1,0 +1,54 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="concordion.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<h1>返回复杂类型:(Collection,Map,MultiValueResult)</h1>
+<div class="example">
+    <p concordion:execute="#c=getCollection()">从Fixture中获取Collection类型的值</p>
+    <p>
+        <!--注释①-->
+        List的长度:<span concordion:assertEquals="#c.size">2</span>
+    </p>
+    <p>
+        <!--注释②-->
+        List:<span concordion:assertFalse="#c.isEmpty">不为空</span>
+    </p>
+
+    <p>
+        <!--注释③-->
+        List中包含:<span concordion:assertTrue="#e in #c"><b concordion:set="#e">Hello</b></span>,
+        但不包含:<span concordion:assertTrue="#e not in #c"><b concordion:set="#e">Welcome</b></span>
+    </p>
+
+    <p>
+        <!--注释④-->
+        List中的第一个元素:<span concordion:assertEquals="#c[0]">Hello</span>,
+        List中的第二个元素:<span concordion:assertEquals="#c[1]">World</span>
+    </p>
+    <hr/>
+    <p concordion:execute="#m = getMap()">从Fixture中获取Map类型的值</p>
+    <p>
+        <!--注释⑤-->
+        Map的长度:<span concordion:assertEquals="#m.size">2</span>
+    </p>
+    <p>
+        <!--注释⑥-->
+        Map["Hello"]的值为:<span concordion:assertEquals="#m.Hello">World</span>,
+        Map["Alex"]的值为:<span concordion:assertEquals="#m.Alex">Wangwenjun</span>
+    </p>
+    <hr/>
+    <p concordion:execute="#m = getMultiValueResult()">从Fixture中获取MultiValueResult类型的值</p>
+    <p>
+        <!--注释⑦-->
+        Map的长度:<span concordion:assertEquals="#m.size">2</span>
+    </p>
+    <p>
+        <!--注释⑧-->
+        MultiValueResult["Hello"]的值为:<span concordion:assertEquals="#m.Hello">World</span>,
+        MultiValueResult["Alex"]的值为:<span concordion:assertEquals="#m.Alex">Wangwenjun</span>
+    </p>
+</div>
+</body>
+</html>

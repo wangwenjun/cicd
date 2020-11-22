@@ -1,0 +1,37 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="concordion.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<h1>Full Name拆分（List）</h1>
+<div class="example">
+    <ul>
+        <li>Full Name is: <span concordion:execute="#result = split(#fullname)"><b concordion:set="#fullname">Jane Smith</b></span> After Split will be below.
+            <ui>
+                <li concordion:assertEquals="#result.firstName">Jane</li>
+                <li concordion:assertEquals="#result.secondName">Smith</li>
+            </ui>
+        </li>
+        <li>Full Name is: <span concordion:execute="#result=split(#TEXT)">Alex</span> After Split will be below.
+            <ui>
+                <li concordion:assertEquals="#result.firstName">Alex</li>
+                <li concordion:assertEquals="#result.secondName"></li>
+            </ui>
+        </li>
+        <li>Full Name is: <span concordion:execute="#result=split(#TEXT)">sir Bob Geldof</span> After Split will be below.
+            <ui>
+                <li concordion:assertEquals="#result.firstName">Bob</li>
+                <li concordion:assertEquals="#result.secondName">Geldof</li>
+            </ui>
+        </li>
+        <li>Full Name is: <span concordion:execute="#result=split(#TEXT)">>Alex Wen Jun Wang</span> After Split will be below.
+            <ui>
+                <li concordion:assertEquals="#result.firstName">Alex</li>
+                <li concordion:assertEquals="#result.secondName">Wen Jun Wang</li>
+            </ui>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

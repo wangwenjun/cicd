@@ -1,0 +1,15 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="concordion.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<h1>Null value 断言</h1>
+<div concordion:example="Null值断言" >
+    从Fixture获取null值<span concordion="#result=getValue()"/>,然后进行断言<br/>
+    <!--result的值为:<span concordion:assertEquals="#result">null</span><br/>-->
+    result的值为:<span concordion:assertEquals="#result">(null)</span>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="concordion.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<h1>Execute指令示例</h1>
+<div class="example">
+    <p>
+        将客户姓氏:<span concordion:set="#firstName">Wang</span>
+        <!--传参调用Fixture的无返回值方法-->
+        <span concordion:execute="setFirstName(#firstName)">传入后台</span>
+    </p>
+    <p>
+        将客户名字:<span concordion:set="#secondName">WenJun</span>
+        <!--传参调用Fixture的无返回值方法-->
+        <span concordion:execute="setSecondName(#secondName)">传入后台</span>
+    </p>
+    <p>
+        <!--不传参调用Fixture的有返回值方法-->
+        获取客户姓名<span concordion:execute="#fullName=getFullName()">后进行断言</span>
+        <!--结果断言-->
+        <span concordion:assertEquals="#fullName">Wang WenJun</span>
+    </p>
+</div>
+</body>
+</html>

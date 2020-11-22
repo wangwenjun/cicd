@@ -1,0 +1,24 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="concordion.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<h1>AssertEquals指令示例</h1>
+<div class="commentary">
+    <!--任然使用set指令中类似的测试-->
+    x的值为<span concordion:set="#x">10</span>,
+    y的值为<span concordion:set="#y">20</span>,
+    <!--直接在assertEquals指令中调用Fixture的sum方法，并对结果进行断言-->
+    x+y的结果为:<span concordion:assertEquals="sum(#x,#y)">30</span>
+
+    <!--先通过execute指令调用fixture的sum方法将结果保存在#result中-->
+    <!--注意这里不要写成<span/>-->
+    <span concordion:execute="#result=sum(#x,#y)"></span>
+    <p/>
+    <!--对#result进行断言操作-->
+    x+y的结果为:<span concordion:assertEquals="#result">30</span>
+
+</div>
+</body>
+</html>

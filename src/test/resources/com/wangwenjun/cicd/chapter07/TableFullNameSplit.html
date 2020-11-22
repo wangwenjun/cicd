@@ -1,0 +1,38 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="concordion.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<h1>Full Name拆分（Table）</h1>
+<div class="example">
+    <table>
+        <tr>
+            <th>Full Name</th>
+            <th>First Name</th>
+            <th>Second Name</th>
+        </tr>
+        <tr concordion:execute="#result = split(#fullName)">
+            <td concordion:set="#fullName">Jane Smith</td>
+            <td concordion:assertEquals="#result.firstName">Jane</td>
+            <td concordion:assertEquals="#result.secondName">Smith</td>
+        </tr>
+        <tr concordion:execute="#result = split(#fullName)">
+            <td concordion:set="#fullName">Alex</td>
+            <td concordion:assertEquals="#result.firstName">Alex</td>
+            <td concordion:assertEquals="#result.secondName"></td>
+        </tr>
+        <tr concordion:execute="#result = split(#fullName)">
+            <td concordion:set="#fullName">sir Bob Geldof</td>
+            <td concordion:assertEquals="#result.firstName">Bob</td>
+            <td concordion:assertEquals="#result.secondName">Geldof</td>
+        </tr>
+        <tr concordion:execute="#result = split(#fullName)">
+            <td concordion:set="#fullName">Alex Wen Jun Wang</td>
+            <td concordion:assertEquals="#result.firstName">Alex</td>
+            <td concordion:assertEquals="#result.secondName">Wen Jun Wang</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="concordion.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<h1>Set指令示例</h1>
+<div class="example">
+    x的值为<span concordion:set="#x">10</span>,y的值为<span concordion:set="#y">20</span>,x+y的结果为:
+    <span concordion:assertEquals="sum(#x,#y)">30</span>
+</div>
+
+</body>
+</html>
