@@ -100,7 +100,26 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.9.1</version>
+                <executions>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/test/java</source>
+                                <source>src/test/specs</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -111,12 +130,12 @@
                         <include>**/*Test.java</include>
                         <include>**/*Runner.java</include>
                     </includes>
+
                     <systemPropertyVariables>
                         <concordion.output.dir>target/concordion</concordion.output.dir>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
-
 
             <plugin>
                 <groupId>com.trivago.rta</groupId>
