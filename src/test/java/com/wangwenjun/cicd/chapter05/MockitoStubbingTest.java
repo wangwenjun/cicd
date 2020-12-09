@@ -5,6 +5,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.MockingDetails;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
@@ -234,5 +236,12 @@ public class MockitoStubbingTest
         doReturn(100).when(partialService).getExternal();
         assertThat(partialService.getRandom(), lessThan(100));
         assertThat(partialService.getExternal(), equalTo(100));
+    }
+
+    @Test
+    public void testMockDetails()
+    {
+        MockingDetails details = mockingDetails(list);
+        System.out.println(details.getMockCreationSettings().getDefaultAnswer());
     }
 }
