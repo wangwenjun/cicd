@@ -141,4 +141,69 @@ public class MockitoStubbingTest
         assertThat(list.get(1), is(equalTo("Alex:1")));
         assertThat(list.get(100), is(equalTo("Alex:100")));
     }
+
+    @Test
+    public void testWhenThenReturnMultipleValues()
+    {
+        //when(list.get(0)).thenReturn("Hello", "Mockito", "Alex");
+        doReturn("Hello", "Mockito", "Alex").when(list).get(0);
+        assertThat(list.get(0), is(equalTo("Hello")));
+        assertThat(list.get(0), is(equalTo("Mockito")));
+        assertThat(list.get(0), is(equalTo("Alex")));
+        assertThat(list.get(0), is(equalTo("Alex")));
+    }
+
+    @Test
+    public void testWhenThenReturnMultipleValues2()
+    {
+        when(list.get(0)).thenReturn("Hello");
+        when(list.get(0)).thenReturn("Mockito");
+        when(list.get(0)).thenReturn("Alex");
+        assertThat(list.get(0), is(equalTo("Alex")));
+        assertThat(list.get(0), is(equalTo("Alex")));
+        assertThat(list.get(0), is(equalTo("Alex")));
+        assertThat(list.get(0), is(equalTo("Alex")));
+    }
+
+    @Test
+    public void testIteratorStyle()
+    {
+        when(list.get(0)).thenReturn("Hello")
+                .thenAnswer(answer)
+                .thenThrow(RuntimeException.class)
+                .thenReturn("Mockito");
+        assertThat(list.get(0), is(equalTo("Hello")));
+        assertThat(list.get(0), is(equalTo("Alex:0")));
+        try
+        {
+            list.get(0);
+            fail("should not process to here");
+        } catch (Exception e)
+        {
+            assertThat(e, instanceOf(RuntimeException.class));
+        }
+        assertThat(list.get(0), is(equalTo("Mockito")));
+        assertThat(list.get(0), is(equalTo("Mockito")));
+    }
+
+    @Test
+    public void testIteratorStyle2()
+    {
+        doReturn("Hello")
+                .doAnswer(answer)
+                .doThrow(RuntimeException.class)
+                .doReturn("Mockito").when(list).get(0);
+        assertThat(list.get(0), is(equalTo("Hello")));
+        assertThat(list.get(0), is(equalTo("Alex:0")));
+        try
+        {
+            list.get(0);
+            fail("should not process to here");
+        } catch (Exception e)
+        {
+            assertThat(e, instanceOf(RuntimeException.class));
+        }
+        assertThat(list.get(0), is(equalTo("Mockito")));
+        assertThat(list.get(0), is(equalTo("Mockito")));
+    }
 }
