@@ -1,5 +1,6 @@
 package com.wangwenjun.cicd.chapter05;
 
+import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,11 +21,20 @@ public class MockitoStubbingTest
     @Mock
     private List<String> list;
 
+    @Mock
+    private PartialService partialService;
+
     private Answer<String> answer = invocation ->
     {
         Integer argument = invocation.getArgument(0, Integer.class);
         return "Alex:" + argument;
     };
+
+    @After
+    public void tearDown()
+    {
+        reset(list, partialService);
+    }
 
     @Test
     public void testWhenThenReturn()
@@ -205,5 +215,15 @@ public class MockitoStubbingTest
         }
         assertThat(list.get(0), is(equalTo("Mockito")));
         assertThat(list.get(0), is(equalTo("Mockito")));
+    }
+
+    @Test
+    public void testWhenThenCallRealMethod()
+    {
+        when(partialService.getRandom()).thenCallRealMethod();
+        when(partialService.getExternal()).thenReturn(100);
+        System.out.println(partialService.getRandom());
+        assertThat(partialService.getRandom(), lessThan(100));
+        assertThat(partialService.getExternal(), equalTo(100));
     }
 }
