@@ -226,4 +226,13 @@ public class MockitoStubbingTest
         assertThat(partialService.getRandom(), lessThan(100));
         assertThat(partialService.getExternal(), equalTo(100));
     }
+
+    @Test
+    public void testDoCallRealMethodWhen()
+    {
+        doCallRealMethod().when(partialService).getRandom();
+        doReturn(100).when(partialService).getExternal();
+        assertThat(partialService.getRandom(), lessThan(100));
+        assertThat(partialService.getExternal(), equalTo(100));
+    }
 }
