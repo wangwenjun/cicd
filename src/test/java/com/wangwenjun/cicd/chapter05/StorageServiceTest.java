@@ -44,4 +44,13 @@ public class StorageServiceTest
         assertThat(result, is(equalTo(false)));
         verify(googleCloudStorage, times(0)).store(any(byte[].class));
     }
+
+    @Test
+    public void testDoThrowWhenForVoidMethod() throws IOException
+    {
+        doThrow(IOException.class).when(googleCloudStorage).store(any(byte[].class));
+        boolean result = this.storageService.uploadToCloud(new byte[]{0x1, 0x2});
+        assertThat(result, is(equalTo(false)));
+    }
+
 }

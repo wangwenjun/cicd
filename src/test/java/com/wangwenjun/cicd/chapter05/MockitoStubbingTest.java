@@ -4,15 +4,14 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.stubbing.Answer;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -20,6 +19,12 @@ public class MockitoStubbingTest
 {
     @Mock
     private List<String> list;
+
+    private Answer<String> answer = invocation ->
+    {
+        Integer argument = invocation.getArgument(0, Integer.class);
+        return "Alex:" + argument;
+    };
 
     @Test
     public void testWhenThenReturn()
@@ -51,5 +56,89 @@ public class MockitoStubbingTest
     {
         doNothing().when(list).get(0);
         list.get(0);
+    }
+
+    @Test
+    public void testWhenThenThrow()
+    {
+        when(list.get(0)).thenThrow(RuntimeException.class);
+        when(list.get(1)).thenThrow(new RuntimeException());
+        try
+        {
+            list.get(0);
+            fail("should not process to here");
+        } catch (Exception e)
+        {
+            assertThat(e, instanceOf(RuntimeException.class));
+        }
+
+        try
+        {
+            list.get(1);
+            fail("should not process to here");
+        } catch (Exception e)
+        {
+            assertThat(e, instanceOf(RuntimeException.class));
+        }
+    }
+
+    @Test
+    public void testDoThrowWhen()
+    {
+        doThrow(RuntimeException.class).when(list).clear();
+        doThrow(RuntimeException.class).when(list).get(0);
+
+        try
+        {
+            list.get(0);
+            fail("should not process to here");
+        } catch (Exception e)
+        {
+            assertThat(e, instanceOf(RuntimeException.class));
+        }
+
+        try
+        {
+            list.clear();
+            fail("should not process to here");
+        } catch (Exception e)
+        {
+            assertThat(e, instanceOf(RuntimeException.class));
+        }
+    }
+
+    @Ignore
+    @Test
+    public void testThrowCheckedException()
+    {
+        doThrow(Exception.class).when(list).get(0);
+        list.get(0);
+    }
+
+    @Test
+    public void testPreAnswer()
+    {
+        when(list.get(0)).thenReturn("Alex");
+        when(list.get(1)).thenReturn("Wang");
+        assertThat(list.get(0), equalTo("Alex"));
+        assertThat(list.get(1), equalTo("Wang"));
+    }
+
+    @Test
+    public void testWhenThenAnswer()
+    {
+        when(list.get(anyInt())).thenAnswer(answer);
+        assertThat(list.get(0), is(equalTo("Alex:0")));
+        assertThat(list.get(1), is(equalTo("Alex:1")));
+        assertThat(list.get(100), is(equalTo("Alex:100")));
+    }
+
+    @Test
+    public void testDoAnswerWhen()
+    {
+        doAnswer(answer).when(list).get(anyInt());
+        assertThat(list.get(0), is(equalTo("Alex:0")));
+        assertThat(list.get(1), is(equalTo("Alex:1")));
+        assertThat(list.get(100), is(equalTo("Alex:100")));
     }
 }
