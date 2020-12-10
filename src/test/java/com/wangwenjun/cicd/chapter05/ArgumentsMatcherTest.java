@@ -1,6 +1,7 @@
 package com.wangwenjun.cicd.chapter05;
 
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.AdditionalMatchers;
@@ -9,11 +10,11 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.intThat;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
 
@@ -22,6 +23,9 @@ public class ArgumentsMatcherTest
 {
     @Mock
     private List<String> list;
+
+    @Mock
+    private Map<String, String> map;
 
     @Test
     public void simpleTest()
@@ -49,9 +53,16 @@ public class ArgumentsMatcherTest
         assertThat(list.get(10), equalTo("Alex"));
     }
 
+    @Ignore
+    @Test
+    public void invalidArgumentMatcherTest()
+    {
+        when(map.getOrDefault(anyString(), "Mockito")).thenReturn("Powermock");
+    }
+
     @After
     public void clean()
     {
-        reset(list);
+        reset(list, map);
     }
 }
