@@ -26,4 +26,9 @@ public class UserDao
 
         return this.saveUser(user);
     }
+
+    public int deleteUser(User user)
+    {
+        throw new RuntimeException();
+    }
 }

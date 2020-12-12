@@ -13,4 +13,10 @@ public class UserService
     {
         return this.userDao.merge(user);
     }
+
+    public int deleteUser(User user)
+    {
+        user.setUsername(user.getUsername().toUpperCase());
+        return this.userDao.deleteUser(user);
+    }
 }
