@@ -1,3 +1,4 @@
+/*
 package com.wangwenjun.cicd.chapter06;
 
 import com.wangwenjun.cicd.chapter05.AccountDao;
@@ -17,7 +18,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
-
 
 @RunWith(PowerMockRunner.class)
 public class PowermockLoginControllerTest
@@ -71,3 +71,4 @@ public class PowermockLoginControllerTest
         assertThat(result, is(equalTo("5xx")));
     }
 }
+*/

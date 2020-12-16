@@ -1,3 +1,4 @@
+/*
 package com.wangwenjun.cicd.chapter06;
 
 import com.wangwenjun.cicd.chapter05.AccountDao;
@@ -7,8 +8,6 @@ import com.wangwenjun.cicd.chapter05.UserAccount;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.modules.junit4.rule.PowerMockRule;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +19,6 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
-
 //@RunWith(PowerMockRunner.class)
 public class PowermockRuleLoginControllerTest
 {
@@ -29,7 +27,8 @@ public class PowermockRuleLoginControllerTest
     private AccountService accountService;
     private LoginController loginController;
 
-    public @Rule PowerMockRule rule = new PowerMockRule();
+    public @Rule
+    PowerMockRule rule = new PowerMockRule();
 
     @Before
     public void setUp()
@@ -75,3 +74,4 @@ public class PowermockRuleLoginControllerTest
         assertThat(result, is(equalTo("5xx")));
     }
 }
+*/
